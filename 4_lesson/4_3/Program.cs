@@ -9,6 +9,8 @@ void RandBinArray(int n)
         arr[i] = new Random().Next(2);
         Console.Write($"{arr[i]}");
     }
+    
+
 }
 
 Console.WriteLine("Введите размер массива: ");
