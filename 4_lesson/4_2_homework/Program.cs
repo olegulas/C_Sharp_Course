@@ -20,7 +20,7 @@ void PrintArrayInt(int[] arr)
     Console.Write("]");
 }
 
-void InitRandArr(int[] arr, int size, int startRand, int lastRand)
+void InitRandArr(int[] arr, int startRand, int lastRand)
 {
     for (int i = 0; i < arr.Length; i++)
     {
@@ -36,4 +36,4 @@ int start = int.Parse(Console.ReadLine());
 Console.Write("Enter last digit for Rand init array: ");
 int last = int.Parse(Console.ReadLine());
 int[] array = new int [size];
-InitRandArr(array, array.Length, start, last);
+InitRandArr(array, start, last);
