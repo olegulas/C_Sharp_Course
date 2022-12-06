@@ -35,30 +35,32 @@ int[] ArrayNums(int size, int start, int last)
 
 int[] NewArr(int[] arr)
 {
-    int to = arr.Length / 2;       // переменная середины массива
-    int[] NewArr;                   // новый массив
+    int to = arr.Length / 2;         // переменная середины массива
+    int[] NewArr;                    // новый массив
 
-    bool chet = arr.Length % 2 == 0;// переменная четности количества чисел в массиве(да/нет)
+    bool chet = arr.Length % 2 == 0; // переменная четности количества чисел в массиве(да/нет)
 
     if (chet)
         NewArr = new int[to];
     else
         NewArr = new int[to + 1];
 
+    // заполнение нового массива произведением зеркальных элементов
     for (int i = 0; i < to; i++)
     {
-        NewArr[i] = arr[i] * arr[arr.Length - 1 - i];   //заполнение нового массива произведением зеркальных элементов
+        NewArr[i] = arr[i] * arr[arr.Length - 1 - i];   
     }
 
-    if (!chet)                      // если массив с нечетным числом, выдираем серединку в новый
+    // если массив с нечетным числом, выдираем серединку в новый
+    if (!chet)                      
         NewArr[NewArr.Length - 1] = arr[to];
 
     return NewArr;
 }
 
-int[] arr_1 = ArrayNums(int.Parse(Console.ReadLine()),
-                        int.Parse(Console.ReadLine()),
-                        int.Parse(Console.ReadLine()));
+int[] arr_1 = ArrayNums(Convert.ToInt32(Console.ReadLine()),
+                        Convert.ToInt32(Console.ReadLine()),
+                        Convert.ToInt32(Console.ReadLine()));
 Console.Write("Исходный массив: ");
 Print(arr_1);
 Console.Write("Новый массив: ");
