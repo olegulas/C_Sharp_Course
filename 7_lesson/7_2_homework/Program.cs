@@ -1,9 +1,9 @@
-﻿/*Задача 50. Напишите программу, которая на вход принимает позиции элемента в двумерном массиве, и возвращает значение этого элемента или же указание, что такого элемента нет.
+﻿/*Задача 52. Задайте двумерный массив из целых чисел. Найдите среднее арифметическое элементов в каждом столбце.
 Например, задан массив:
 1 4 7 2
 5 9 2 3
 8 4 2 4
-17 -> такого числа в массиве нет*/
+Среднее арифметическое каждого столбца: 4,6; 5,6; 3,6; 3.*/
 
 void Print(int[,] arr)
 {
@@ -38,17 +38,28 @@ int[,] FillArrayNums(int row, int column, int start, int last)
     return arr;
 }
 
-void findPositionElement(int[,] arr, int pos)
+double AverageColumnElements(int[,] arr, int j)
 {
-    int maxPos = (arr.GetLength(0)) * (arr.GetLength(1));
-    int i = (int)Math.Round(pos / (double)arr.GetLength(1), MidpointRounding.ToPositiveInfinity);
-    int j = Math.Abs(arr.GetLength(1) - Math.Abs((maxPos - pos) % (arr.GetLength(1))));
-    if (pos < 1)
-        Console.Write("position of the element cannot be less than 1!");
-    else if (pos > maxPos)
-        Console.Write($"position of the element cannot be greater than {maxPos}!");
-    else
-        Console.Write($"Element in position ({pos}) in array locate ({i},{j}) = {arr[i - 1, j - 1]}");
+    double avrSum = 0;
+    for (int i = 0; i < arr.GetLength(0); i++)
+    {
+        avrSum += arr[i, j];
+    }
+    return avrSum / arr.GetLength(0);
+}
+
+void PrintAverColumnElements(int[,] arr)
+{
+    for (int j = 0; j < arr.GetLength(1); j++)
+    {
+        if (j == arr.GetLength(1) - 1)
+        {
+            Console.WriteLine($"{Math.Round(AverageColumnElements(arr, j), 2)}.");
+            return;
+        }
+        Console.Write($"{Math.Round(AverageColumnElements(arr, j), 2)}; ");
+    }
+
 }
 
 Console.Write("Enter the number of rows: ");
@@ -62,7 +73,6 @@ int finishArr = int.Parse(Console.ReadLine());
 
 int[,] arr_1 = FillArrayNums(row, column, startArr, finishArr);
 Print(arr_1);
-Console.Write("Enter position the element in array: ");
-int findElem = int.Parse(Console.ReadLine());
-findPositionElement(arr_1, findElem);
+PrintAverColumnElements(arr_1);
+
 
