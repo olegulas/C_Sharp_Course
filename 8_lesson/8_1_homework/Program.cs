@@ -33,15 +33,15 @@ int[,] MassNums(int row, int column, int from, int to)
     return arr;
 }
 
-int NumColumnMaxArr(int[] arr)
+int NumColumnMinArr(int[] arr)
 {
-    int max = 0;
+    int min = 0;
     for (int i = 1; i < arr.Length; i++)
     {
-        if (arr[max] < arr[i])
-            max = i;
+        if (arr[min] > arr[i])
+            min = i;
     }
-    return max + 1;
+    return min + 1;
 }
 
 
@@ -54,7 +54,7 @@ int SummColumnArray(int[,] arr)
         for (int j = 0; j < arr.GetLength(1); j++)
             sumArr[i] += arr[i, j];
     }
-    return NumColumnMaxArr(sumArr);
+    return NumColumnMinArr(sumArr);
 }
 
 Console.Write("Enter the number of rows: ");
@@ -67,4 +67,4 @@ int[,] arr_1 = MassNums(row, column,
                         int.Parse(Console.ReadLine()));
 Console.WriteLine("Orig array:");
 Print(arr_1);
-Console.WriteLine($"{SummColumnArray(arr_1)} with the maximum sum of elements");
+Console.WriteLine($"{SummColumnArray(arr_1)} row with the minimum sum of elements");
